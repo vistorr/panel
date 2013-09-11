@@ -20,6 +20,9 @@ class FileCache implements CacheInterface
         $this->dir = rtrim($dir, '\\/');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function loadClassMetadataFromCache(\ReflectionClass $class)
     {
         $path = $this->dir.'/'.strtr($class->name, '\\', '-').'.cache.php';
@@ -30,12 +33,24 @@ class FileCache implements CacheInterface
         return include $path;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function putClassMetadataInCache(ClassMetadata $metadata)
     {
         $path = $this->dir.'/'.strtr($metadata->name, '\\', '-').'.cache.php';
-        file_put_contents($path, '<?php return unserialize('.var_export(serialize($metadata), true).');');
+
+        $tmpFile = tempnam($this->dir, 'metadata-cache');
+        file_put_contents($tmpFile, '<?php return unserialize('.var_export(serialize($metadata), true).');');
+
+        if (false === @rename($tmpFile, $path)) {
+            throw new \RuntimeException(sprintf('Could not write new cache file to %s.', $path));
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function evictClassMetadataFromCache(\ReflectionClass $class)
     {
         $path = $this->dir.'/'.strtr($class->name, '\\', '-').'.cache.php';

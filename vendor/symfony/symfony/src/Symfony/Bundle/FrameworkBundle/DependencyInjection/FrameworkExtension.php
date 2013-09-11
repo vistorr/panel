@@ -67,6 +67,7 @@ class FrameworkExtension extends Extension
         }
 
         $container->setParameter('kernel.trusted_proxies', $config['trusted_proxies']);
+        $container->setParameter('kernel.trusted_hosts', $config['trusted_hosts']);
 
         // @deprecated, to be removed in 2.3
         $container->setParameter('kernel.trust_proxy_headers', $config['trust_proxy_headers']);
@@ -269,8 +270,8 @@ class FrameworkExtension extends Extension
         $loader->load('routing.xml');
 
         $container->setParameter('router.resource', $config['resource']);
+        $container->setParameter('router.cache_class_prefix', $container->getParameter('kernel.name').ucfirst($container->getParameter('kernel.environment')));
         $router = $container->findDefinition('router.default');
-
         $argument = $router->getArgument(2);
         $argument['strict_requirements'] = $config['strict_requirements'];
         if (isset($config['type'])) {

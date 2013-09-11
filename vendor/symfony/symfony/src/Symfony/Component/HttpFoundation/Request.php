@@ -40,6 +40,16 @@ class Request
     protected static $trustedProxies = array();
 
     /**
+     * @var string[]
+     */
+    protected static $trustedHostPatterns = array();
+
+    /**
+     * @var string[]
+     */
+    protected static $trustedHosts = array();
+
+    /**
      * Names for headers that can be trusted when
      * using trusted proxies.
      *
@@ -396,6 +406,10 @@ class Request
         $dup->method = null;
         $dup->format = null;
 
+        if (!$dup->get('_format')) {
+            $dup->setRequestFormat($this->getRequestFormat());
+        }
+
         return $dup;
     }
 
@@ -499,6 +513,32 @@ class Request
     public static function getTrustedProxies()
     {
         return self::$trustedProxies;
+    }
+
+    /**
+     * Sets a list of trusted host patterns.
+     *
+     * You should only list the hosts you manage using regexs.
+     *
+     * @param array $hostPatterns A list of trusted host patterns
+     */
+    public static function setTrustedHosts(array $hostPatterns)
+    {
+        self::$trustedHostPatterns = array_map(function ($hostPattern) {
+            return sprintf('{%s}i', str_replace('}', '\\}', $hostPattern));
+        }, $hostPatterns);
+        // we need to reset trusted hosts on trusted host patterns change
+        self::$trustedHosts = array();
+    }
+
+    /**
+     * Gets the list of trusted host patterns.
+     *
+     * @return array An array of trusted host patterns.
+     */
+    public static function getTrustedHosts()
+    {
+        return self::$trustedHostPatterns;
     }
 
     /**
@@ -721,9 +761,10 @@ class Request
         $clientIps[] = $ip;
 
         $trustedProxies = self::$trustProxy && !self::$trustedProxies ? array($ip) : self::$trustedProxies;
+        $ip = $clientIps[0];
         $clientIps = array_diff($clientIps, $trustedProxies);
 
-        return array_pop($clientIps);
+        return $clientIps ? array_pop($clientIps) : $ip;
     }
 
     /**
@@ -836,8 +877,14 @@ class Request
      */
     public function getPort()
     {
-        if (self::$trustProxy && self::$trustedHeaders[self::HEADER_CLIENT_PORT] && $port = $this->headers->get(self::$trustedHeaders[self::HEADER_CLIENT_PORT])) {
-            return $port;
+        if (self::$trustProxy) {
+            if (self::$trustedHeaders[self::HEADER_CLIENT_PORT] && $port = $this->headers->get(self::$trustedHeaders[self::HEADER_CLIENT_PORT])) {
+                return $port;
+            }
+
+            if (self::$trustedHeaders[self::HEADER_CLIENT_PROTO] && 'https' === $this->headers->get(self::$trustedHeaders[self::HEADER_CLIENT_PROTO], 'http')) {
+                return 443;
+            }
         }
 
         return $this->server->get('SERVER_PORT');
@@ -1041,6 +1088,24 @@ class Request
         // check that it does not contain forbidden characters (see RFC 952 and RFC 2181)
         if ($host && !preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $host)) {
             throw new \UnexpectedValueException('Invalid Host');
+        }
+
+        if (count(self::$trustedHostPatterns) > 0) {
+            // to avoid host header injection attacks, you should provide a list of trusted host patterns
+
+            if (in_array($host, self::$trustedHosts)) {
+                return $host;
+            }
+
+            foreach (self::$trustedHostPatterns as $pattern) {
+                if (preg_match($pattern, $host)) {
+                    self::$trustedHosts[] = $host;
+
+                    return $host;
+                }
+            }
+
+            throw new \UnexpectedValueException('Untrusted Host');
         }
 
         return $host;
@@ -1345,7 +1410,18 @@ class Request
             return $locales[0];
         }
 
-        $preferredLanguages = array_values(array_intersect($preferredLanguages, $locales));
+        $extendedPreferredLanguages = array();
+        foreach ($preferredLanguages as $language) {
+            $extendedPreferredLanguages[] = $language;
+            if (false !== $position = strpos($language, '_')) {
+                $superLanguage = substr($language, 0, $position);
+                if (!in_array($superLanguage, $preferredLanguages)) {
+                    $extendedPreferredLanguages[] = $superLanguage;
+                }
+            }
+        }
+
+        $preferredLanguages = array_values(array_intersect($extendedPreferredLanguages, $locales));
 
         return isset($preferredLanguages[0]) ? $preferredLanguages[0] : $locales[0];
     }
@@ -1477,11 +1553,14 @@ class Request
     {
         $requestUri = '';
 
-        if ($this->headers->has('X_ORIGINAL_URL') && false !== stripos(PHP_OS, 'WIN')) {
+        if ($this->headers->has('X_ORIGINAL_URL')) {
             // IIS with Microsoft Rewrite Module
             $requestUri = $this->headers->get('X_ORIGINAL_URL');
             $this->headers->remove('X_ORIGINAL_URL');
-        } elseif ($this->headers->has('X_REWRITE_URL') && false !== stripos(PHP_OS, 'WIN')) {
+            $this->server->remove('HTTP_X_ORIGINAL_URL');
+            $this->server->remove('UNENCODED_URL');
+            $this->server->remove('IIS_WasUrlRewritten');
+        } elseif ($this->headers->has('X_REWRITE_URL')) {
             // IIS with ISAPI_Rewrite
             $requestUri = $this->headers->get('X_REWRITE_URL');
             $this->headers->remove('X_REWRITE_URL');

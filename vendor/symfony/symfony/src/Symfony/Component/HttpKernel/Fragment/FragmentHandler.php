@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\HttpKernel\Fragment;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
@@ -147,9 +146,9 @@ class FragmentHandler implements EventSubscriberInterface
     // to be removed in 2.3
     public function fixOptions(array $options)
     {
-        // support for the standalone option is @deprecated in 2.2 and replaced with the renderer option
+        // support for the standalone option is @deprecated in 2.2 and replaced with the strategy option
         if (isset($options['standalone'])) {
-            trigger_error('The "standalone" option is deprecated in version 2.2 and replaced with the "renderer" option.', E_USER_DEPRECATED);
+            trigger_error('The "standalone" option is deprecated in version 2.2 and replaced with the "strategy" option.', E_USER_DEPRECATED);
 
             // support for the true value is @deprecated in 2.2, will be removed in 2.3
             if (true === $options['standalone']) {
@@ -166,7 +165,7 @@ class FragmentHandler implements EventSubscriberInterface
                 $options['standalone'] = 'hinclude';
             }
 
-            $options['renderer'] = $options['standalone'];
+            $options['strategy'] = $options['standalone'];
             unset($options['standalone']);
         }
 

@@ -283,7 +283,7 @@ class MainConfiguration implements ConfigurationInterface
                             continue;
                         }
 
-                        if (false !== strpos('/', $firewall[$k]['check_path']) && !preg_match('#'.$firewall['pattern'].'#', $firewall[$k]['check_path'])) {
+                        if (false !== strpos($firewall[$k]['check_path'], '/') && !preg_match('#'.$firewall['pattern'].'#', $firewall[$k]['check_path'])) {
                             throw new \LogicException(sprintf('The check_path "%s" for login method "%s" is not matched by the firewall pattern "%s".', $firewall[$k]['check_path'], $k, $firewall['pattern']));
                         }
                     }
@@ -301,8 +301,7 @@ class MainConfiguration implements ConfigurationInterface
             ->children()
                 ->arrayNode('providers')
                     ->example(array(
-                        'memory' => array(
-                            'name' => 'memory',
+                        'my_memory_provider' => array(
                             'memory' => array(
                                 'users' => array(
                                     'foo' => array('password' => 'foo', 'roles' => 'ROLE_USER'),
@@ -310,7 +309,7 @@ class MainConfiguration implements ConfigurationInterface
                                 ),
                             )
                         ),
-                        'entity' => array('entity' => array('class' => 'SecurityBundle:User', 'property' => 'username'))
+                        'my_entity_provider' => array('entity' => array('class' => 'SecurityBundle:User', 'property' => 'username'))
                     ))
                     ->disallowNewKeysInSubsequentConfigs()
                     ->isRequired()
