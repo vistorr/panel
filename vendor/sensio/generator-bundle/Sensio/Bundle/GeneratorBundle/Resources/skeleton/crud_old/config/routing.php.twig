@@ -6,8 +6,8 @@ use Symfony\Component\Routing\Route;
 $collection = new RouteCollection();
 
 {% if 'index' in actions %}
-$collection->add('{{ route_name_prefix }}', new Route('/pagina/{page}.html', array(
-    '_controller' => '{{ bundle }}:{{ entity }}:index, page:1',
+$collection->add('{{ route_name_prefix }}', new Route('/', array(
+    '_controller' => '{{ bundle }}:{{ entity }}:index',
 )));
 {% endif %}
 

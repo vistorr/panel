@@ -1,0 +1,8 @@
+<div id="RS-sidebar-actions">
+    <ul>
+        {% if 'new' in actions %}
+            <li class="RS-button-action sf_admin_action_new"><a href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}">AGREGAR {{ entity|upper }}</a></li>                                
+        {% endif %}
+        <li class="sf_admin_action_list"><a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">Listado de {{ entity|title }}</a></li>
+    </ul>
+</div>

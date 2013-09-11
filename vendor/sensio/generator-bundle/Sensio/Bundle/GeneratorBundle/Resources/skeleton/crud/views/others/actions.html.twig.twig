@@ -1,12 +1,10 @@
-
-                <ul>
-
-                {%- for action in record_actions %}
-
-                    <li>
-                        <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}">{{ action }}</a>
-                    </li>
-
-                {%- endfor %}
-
-                </ul>
+<div class="mas-acciones">
+    <span>M&aacute;s acciones</span>
+    <ul style="display: none;" class="sf_admin_td_actions">
+        {%- for action in record_actions %}
+            <li class="RS-actions RS-action-{{ action }}">
+                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity.id }) }}" }}">{{ action|title }}</a>
+            </li>
+        {%- endfor %}
+    </ul>
+</div>
