@@ -1,0 +1,5 @@
+panel_ctrlw:
+    resource: "@PanelCtrlwBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
