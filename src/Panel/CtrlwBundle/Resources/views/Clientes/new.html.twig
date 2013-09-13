@@ -1,0 +1,20 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Clientes creation</h1>
+
+    <form action="{{ path('clientes_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <li>
+    <a href="{{ path('clientes') }}">
+        <button>Cancelar</button>
+    </a>
+</li>
+<li>
+    <button class='RS-form-save' data-form-id='#clientes_update'>Guardar</button>
+</li>{% endblock %}

@@ -3,12 +3,12 @@
      * Lists all {{ entity }} entities.
      *
 {% if 'annotation' == format %}
-     * @Route("/", name="{{ route_name_prefix }}")
+     * @Route("/pagina/{page}.html", name="{{ route_name_prefix }}")
      * @Method("GET")
      * @Template()
 {% endif %}
      */
-    public function indexAction($page)
+    public function indexAction($page=1)
     {
         $em = $this->getDoctrine()->getManager();
 

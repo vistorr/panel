@@ -1,0 +1,50 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% form_theme edit_form 'PanelCtrlwBundle:FormTheme:fields.html.twig' %}
+
+{% block title -%}
+{{ parent() }} - ClientesEditar
+{% endblock -%}
+
+{% block sidebar -%}
+    <div id="RS-sidebar-actions">
+    <ul>
+        <li class="RS-button-action sf_admin_action_new"><a href="{{ path('clientes_new') }}">AGREGAR CLIENTES</a></li>                                
+        <li class="sf_admin_action_list"><a href="{{ path('clientes') }}">Listado de Clientes</a></li>
+    </ul>
+</div>{% endblock -%}
+
+{% block controller_name %}
+    Clientes
+{% endblock %}
+
+{% block batch_actions -%}
+    <ul>
+        <li>
+            <a href="{{ path('clientes') }}">
+                <button>Cancelar</button>
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('clientes_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button class='red' type="submit">Eliminar</button>
+            </form>
+        </li>
+        <li>
+            <button class='RS-form-save' data-form-id='#clientes_update'>Guardar</button>
+        </li>
+    </ul>
+{% endblock -%}
+
+
+{% block body -%}
+    <form id='clientes_update' action="{{ path('clientes_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        <fieldset id="sf_fieldset_info_general">
+            <h2>Info General</h2>
+            {{ form_widget(edit_form) }}
+        </fieldset>
+    </form>
+{% endblock -%}

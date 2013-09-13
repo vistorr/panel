@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}RS Soluciones :: Panel de Control v1.0{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/menu.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/main.css') }}" />
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% include 'PanelCtrlwBundle::menu.html.twig' %}
+        {% render controller('PanelCtrlwBundle:Buscador:search') %}
+            
+        {% block header %}
+            <div id="RS-menu-actions">
+                <div id="RS-section-name">{% block controller_name %}{% endblock %}</div>
+                
+                <div id="RS-batch-actions">
+                    {% block batch_actions %}{% endblock %}
+                </div>
+            </div>
+            
+        {% endblock %}
+        
+        <div id="RS-left-bar">
+            {% block sidebar %}
+                <div id="RS-module-actions">
+
+                </div>
+            {% endblock %}
+        </div>
+        <div id="RS-main-content-wrapper">
+            <div id="RS-main-content">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        {% block javascripts %}
+            {% javascripts 
+                           'bundles/panelctrlw/js/jquery-2.0.3.min.js'                                 
+                           'bundles/panelctrlw/js/jquery.easing.min.js'                                 
+                           'bundles/panelctrlw/js/jquery.transit.min.js'                                 
+                           'bundles/panelctrlw/js/ctrlw.js'                                 
+                                                             filter="?yui_js" %}
+                <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

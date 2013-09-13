@@ -1,0 +1,54 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Clientes</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Apenom</th>
+                <td>{{ entity.apenom }}</td>
+            </tr>
+            <tr>
+                <th>Cuit</th>
+                <td>{{ entity.cuit }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <li>
+    <a href="{{ path('clientes') }}">
+        <button>Cancelar</button>
+    </a>
+</li>
+<li>
+        <a href="{{ path('clientes_edit', { 'id': entity.id }) }}">
+            <button>Editar</button>
+        </a>
+    </li>
+<li>
+        <form action="{{ path('clientes_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class='red' type="submit">Eliminar</button>
+        </form>
+    </li>
+<li>
+    <button class='RS-form-save' data-form-id='#clientes_update'>Guardar</button>
+</li>{% endblock %}

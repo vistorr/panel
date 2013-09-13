@@ -1,0 +1,15 @@
+<div id="RS-main-menu">
+    <ul>
+        <li onclick="activeMenu('archivos')">Archivos <img vspace="3" src="{{ asset('bundles/panelctrlw/images/drop-down.png') }}" alt=">" />
+            <ul id="RS-submenu-archivos" class="RS-submenu">
+                <li onclick="link_to('{{ path('clientes') }}')">Clientes</li>
+                <li class="RS-submenu-separator"></li>
+                <li onclick="{{ url('clientes') }}">Personal</li>
+            </ul>
+        </li>
+        <li onclick="activeMenu('facturacion')">Facturaci&oacute;n <img vspace="3" src="{{ asset('bundles/panelctrlw/images/drop-down.png') }}" alt=">" />
+            <ul id="RS-submenu-facturacion" class="RS-submenu">
+            </ul>
+        </li>
+    </ul>
+</div>

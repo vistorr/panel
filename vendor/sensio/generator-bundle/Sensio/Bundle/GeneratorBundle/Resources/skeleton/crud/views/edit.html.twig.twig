@@ -1,16 +1,33 @@
-{{ "{% extends 'DEVSISBundle::layout.html.twig' %}" }}
+{{ "{% extends 'PanelCtrlwBundle::layout.html.twig' %}" }}
+
+{{ "{% form_theme edit_form 'PanelCtrlwBundle:FormTheme:fields.html.twig' %}" }}
+
+{{ "{% block title -%}" }}
+{{ "{{ parent() }} - " ~ entity|title ~ "Editar" }}
+{{ "{% endblock -%}" }}
+
+{{ "{% block sidebar -%}" }}
+    {% include 'views/others/sidebar.html.twig.twig' -%}
+{{ "{% endblock -%}" }}
+
+{{ "{% block controller_name %}" }}
+    {{ entity|title }}
+{{ "{% endblock %}" }}
+
+{{ "{% block batch_actions -%}" }}
+    <ul>
+        {% set hide_edit, hide_delete = true, false %}
+        {% include 'views/others/record_actions.html.twig.twig' -%}
+    </ul>
+{{ "{% endblock -%}" }}
+
 
 {{ "{% block body -%}" }}
-    <h1>{{ entity }} edit</h1>
-
-    <form action="{{ "{{ path('" ~ route_name_prefix ~ "_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
+    <form id='{{ route_name_prefix ~ '_update' }}' action="{{ "{{ path('" ~ route_name_prefix ~ "_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
         <input type="hidden" name="_method" value="PUT" />
-        {{ "{{ form_widget(edit_form) }}" }}
-        <p>
-            <button type="submit">Edit</button>
-        </p>
+        <fieldset id="sf_fieldset_info_general">
+            <h2>Info General</h2>
+            {{ "{{ form_widget(edit_form) }}" }}
+        </fieldset>
     </form>
-
-    {% set hide_edit, hide_delete = true, false %}
-    {% include 'views/others/record_actions.html.twig.twig' %}
-{{ "{% endblock %}" }}
+{{ "{% endblock -%}" }}

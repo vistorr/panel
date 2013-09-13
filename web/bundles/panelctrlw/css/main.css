@@ -1,0 +1,82 @@
+body{background: #FFFFFF; margin: 0; padding: 0; font-family: Arial; font-size: 13px;}
+a{text-decoration: none; color: inherit}
+
+.bold{font-weight: bold;}
+
+input, textarea, select, button {border: 1px solid #CCCCCC;border-radius: 3px 3px 3px 3px;margin-right: 0;padding: 6px;transition: all 0.25s ease-in-out 0s;}
+input:focus, textarea:focus, select:focus {border: 1px solid #FFFFFF;box-shadow: 0 0 5px #3079ED;color: #333333;}
+input, textarea, select{font-size: 13px;}
+#RS-menu-actions{height: 58px; border-bottom: 1px solid #e5e5e5; padding-left: 40px;}
+#RS-section-name{color: #dc4b39; font-size: 20px; line-height: 58px;}
+
+#RS-left-bar{float: left; width: 192px; height: 100%; padding: 20px 0 40px 20px; background: #FFFFFF; position: fixed; }
+#RS-main-content-wrapper{position: fixed; z-index: -1; margin-left: 220px; overflow: auto;}
+#RS-main-content{margin-top: 20px; margin-right:10px; background: #f5f5f5;}
+
+#RS-batch-actions{left: 220px;min-width: 400px;position: absolute;top: 90px;z-index: 999;}
+#RS-batch-actions > .pager{margin: 0; padding: 0; list-style: none;}
+#RS-batch-actions > ul{list-style: none; padding: 0;float: left;}
+#RS-batch-actions > ul > li{float: left;margin-right: 10px;}
+button[name="sb"]{padding: 0px;}
+button{cursor: pointer;line-height: 28px !important;padding: 0 8px !important;}
+button.red{background: url("/bundles/panelctrlw/images/RS-btn-action-bg.png") repeat-x transparent !important;}
+button.red:hover{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-hover.png") repeat-x scroll 0 0 transparent  !important}
+button.green{background-color: #92d27c;}
+button.blue{background-color: #7caad2;}
+
+.paginator-button{background: #F2F2F2; padding: 7px 15px; display: inline-block; color: #333; border-radius:3px; border:1px solid #ccc;}
+.paginator-button:hover{box-shadow:-1px 1px 3px #d0cfcf;}
+
+/*#####################################*/
+/*####   CSS PARA TABLA DE LISTADO ####*/
+/*#####################################*/
+
+
+table.records_list{width: 100%;}
+table.records_list th{white-space: nowrap;font-weight: bold; background-color: #FFFFFF; text-align: left}
+table.records_list thead tr{border: 0px;}
+
+table.records_list td, table.records_list th {padding: 0.5em; vertical-align: middle !important; border: medium none !important;}
+table.records_list td{border-style: solid none;border-width: 1px 0;}
+table.records_list tr{background-color: #F5F5F5;border-style: solid none;border-width: 1px 0; border-color: #DDDDDD !important}
+table{border-collapse: collapse;border-spacing: 0;}
+table tbody tr:hover{background: #e5eef1 !important;}
+
+.RS-table-tr-par{background: #fafafa !important;}
+.RS-table-tr-impar{background: #f5f5f5 !important;}
+.mas-acciones {cursor: pointer;font-weight: bold;white-space: nowrap;}
+ul.sf_admin_td_actions {list-style-type: none;margin: 0;padding: 0;}
+.mas-acciones > ul {background: none repeat scroll 0 0 #FFFFFF;border-color: -moz-use-text-color #999999 #999999;border-image: none;border-right: 1px solid #999999;border-style: none solid solid;border-width: 0 1px 1px;box-shadow: 2px 4px 5px #CCCCCC;line-height: 20px;margin-top: 6px !important;padding: 10px !important;position: absolute;width: 150px;}
+
+/*#####################################*/
+/*########   CSS PARA SIDEBAR    ######*/
+/*#####################################*/
+
+#RS-sidebar-actions ul {margin: 10px 0; padding: 0px;}
+#RS-sidebar-actions ul li {color: #343434;font-size: 13px;line-height: 35px;list-style: none outside none;}
+.RS-button-action, .RS-button-action-grey {line-height: 32px; border-radius: 2px 2px 2px 2px;color: #FFFFFF !important;cursor: pointer;display: inline;font-size: 11px !important;font-weight: bold;height: inherit !important;padding: 8px;}
+.RS-button-action{background: url("/bundles/panelctrlw/images/RS-btn-action-bg.png") repeat-x scroll 0 0 transparent !important;border: 1px solid #F14632 !important;}
+
+.RS-button-action-grey{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-grey.png") repeat-x scroll 0 0 transparent !important; border: 1px solid #999 !important}
+.RS-button-action:hover{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-hover.png") repeat-x scroll 0 0 transparent  !important}
+.RS-button-action-grey:hover{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-grey-hover.png") repeat-x scroll 0 0 transparent  !important}
+
+
+/*#####################################*/
+/*##   CSS PARA SPRITE DE ACCIONES   ##*/
+/*#####################################*/
+
+.RS-actions{text-indent: 18px; height: 18px; background-image: url("/bundles/panelctrlw/images/RS-actions-icons.png"); background-repeat: no-repeat;}
+.RS-action-edit{background-position:0 -90px}
+.RS-action-show{background-position:0 0}
+
+/*#####################################*/
+/*######      CSS PARA FORMS     ######*/
+/*#####################################*/
+
+.RS-admin-form-row{padding: 5px 15px !important;border: 0 none !important;}
+.RS-admin-form-row label:after {content: ":";}
+.RS-admin-form-row label {float: left; color: #333333 !important;font-weight: bold !important;line-height: 28px;min-width: 260px;white-space: nowrap;padding: 0 1em 3px 0;}
+.RS-admin-form-row label.required:after {content: ": *"; }
+#RS-main-content fieldset {border: 0px !important;}
+#RS-main-content fieldset h2 {background-color: transparent;border-bottom: 1px solid #CCCCCC;color: #DC4B39;font-size: 15px;margin: 0;padding: 7px;}
