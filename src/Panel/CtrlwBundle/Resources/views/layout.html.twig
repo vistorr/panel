@@ -5,6 +5,7 @@
         <title>{% block title %}RS Soluciones :: Panel de Control v1.0{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/menu.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/main.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/flick/jquery-ui-1.8.2.custom.css') }}" />
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -38,8 +39,10 @@
         {% block javascripts %}
             {% javascripts 
                            'bundles/panelctrlw/js/jquery-2.0.3.min.js'                                 
+                           'bundles/panelctrlw/js/jquery.ui.js'                                 
                            'bundles/panelctrlw/js/jquery.easing.min.js'                                 
                            'bundles/panelctrlw/js/jquery.transit.min.js'                                 
+                           'bundles/panelctrlw/js/jquery.hotkeys.min.js'                                 
                            'bundles/panelctrlw/js/ctrlw.js'                                 
                                                              filter="?yui_js" %}
                 <script src="{{ asset_url }}" type="text/javascript"></script>

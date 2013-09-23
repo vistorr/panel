@@ -1,0 +1,77 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% block title -%}
+{{ parent() }} - NovedadesVista
+{% endblock -%}
+
+{% block sidebar -%}
+    <div id="RS-sidebar-actions">
+    <ul>
+        <li class="RS-button-action sf_admin_action_new"><a href="{{ path('novedades_new') }}">AGREGAR NOVEDADES</a></li>                                
+        <li class="sf_admin_action_list"><a href="{{ path('novedades') }}">Listado de Novedades</a></li>
+    </ul>
+</div>{% endblock -%}
+
+{% block controller_name %}
+    Novedades
+{% endblock %}
+
+{% block batch_actions -%}
+    <ul>
+                <li>
+    <a href="{{ path('novedades') }}">
+        <button>Cancelar</button>
+    </a>
+</li>
+<li>
+        <a href="{{ path('novedades_edit', { 'id': entity.id }) }}">
+            <button>Editar</button>
+        </a>
+    </li>
+<li>
+        <form action="{{ path('novedades_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class='red' type="submit">Eliminar</button>
+        </form>
+    </li>
+</ul>
+{% endblock -%}
+
+
+{% block body -%}
+    <fieldset id="sf_fieldset_info_general">
+        <h2>Info General</h2>
+
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label  class="required" >Id</label>
+                <input type="text" readonly="readonly" value="{{ entity.id }}" />
+                </div>
+        </div>
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label  class="required" >Titulo</label>
+                <input type="text" readonly="readonly" value="{{ entity.titulo }}" />
+                </div>
+        </div>
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label >Resumen</label>
+                <input type="text" readonly="readonly" value="{{ entity.resumen }}" />
+                </div>
+        </div>
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label >Cuerpo</label>
+                <input type="text" readonly="readonly" value="{{ entity.cuerpo }}" />
+                </div>
+        </div>
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label >Created_at</label>
+                <input type="text" readonly="readonly" value="{{ entity.createdat }}" />
+                </div>
+        </div>
+        </fieldset>
+{% endblock -%}

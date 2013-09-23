@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Panel\CtrlwBundle\PanelCtrlwBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new MakerLabs\PagerBundle\MakerLabsPagerBundle(),
+            new Panel\NovedadesBundle\PanelNovedadesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

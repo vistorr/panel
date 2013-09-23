@@ -1,0 +1,104 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Clientes
+{% endblock %}
+ 
+
+{% block sidebar %}
+    <div id="RS-sidebar-actions">
+    <ul>
+        <li class="RS-button-action sf_admin_action_new"><a href="{{ path('clientes_new') }}">AGREGAR CLIENTES</a></li>                                
+        <li class="sf_admin_action_list"><a href="{{ path('clientes') }}">Listado de Clientes</a></li>
+    </ul>
+</div>{% endblock %}
+
+
+{% block controller_name %}
+    Resultados
+{% endblock %}
+
+{% block batch_actions %}
+    Se encontraron N registros
+{% endblock %}
+
+{% block body -%}
+    <div class="sf_admin_list">
+        {% set noresult = true %}
+        <div id="RS-results-tabs">
+            <ul>
+                {% if clientes|length -%}<li><a href="#clientes">Clientes</a></li>{% endif -%}
+                {% if novedades|length -%}<li><a href="#novedades">Novedades</a></li>{% endif -%}
+            </ul>
+            {% if clientes|length -%}
+                {% set noresult = false %}
+                <div id="clientes">
+                    <fieldset>
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Apellido y Nombre</th>
+                                    <th>CUIT</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cliente in clientes -%}
+                                <tr style="cursor: pointer" onclick="window.location.href='{{ path('clientes_edit', {'id': cliente.id}) }}'">
+                                    <td>{{ cliente.id }}</td>
+                                    <td>{{ cliente.apenom }}</td>
+                                    <td>{{ cliente.cuit }}</td>
+                                    <td><a href="{{ path('clientes_edit',{'id': cliente.id}) }}">Editar</a></td>
+                                </tr>
+                                {% endfor -%}
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            {% endif -%}
+            {% if novedades|length -%}
+                {% set noresult = false %}
+                <div id="novedades">
+                    <fieldset>
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Titulo</th>
+                                    <th>Cuerpo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for novedad in novedades -%}
+                                <tr style="cursor: pointer" onclick="window.location.href='{{ path('novedades_edit', {'id': novedad.id}) }}'">
+                                    <td>{{ novedad.id }}</td>
+                                    <td>{{ novedad.titulo }}</td>
+                                    <td>{{ novedad.cuerpo|slice(0,20) }}</td>
+                                    <td><a href="{{ path('novedades_edit',{'id': novedad.id}) }}">Editar</a></td>
+                                </tr>
+                                {% endfor -%}
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            {% endif -%}
+            {% if noresult -%}
+                <div class="RS-noresult">No se encontraron resultados para la busqueda.</div>
+            {% endif -%}
+        </div>
+
+        
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    
+    {{ parent() }}
+    <script>
+        $(function() {
+            $( "#RS-results-tabs" ).tabs();        
+        });
+    </script>
+{% endblock %}

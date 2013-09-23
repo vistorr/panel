@@ -1,4 +1,19 @@
+
+function hotkeys()
+{
+    $(document).bind('keydown', 'f2',          function (evt){ $('#b').focus(); return false; });
+    $(document).bind('keydown', 'Esc',         function (evt){ $('#suggestions').fadeOut(); $('#b').blur(); jQuery('#ctrlw_filters').fadeOut(); return false; });
+    $(document).bind('keydown', 'Ctrl+s',      function (evt){ $('input[value=Guardar]').click(); return false; });
+    $(document).bind('keydown', 'Alt+a',       function (evt){ activeMenu('archivos'); return false; });
+    $(document).bind('keydown', 'Alt+c',       function (evt){ $('#RS-submenu-configuraciones').toggle(); return false; });
+    $(document).bind('keydown', 'Alt+g',       function (evt){ $('#RS-submenu-seguridad').toggle(); return false; });
+    $(document).bind('keydown', 'Ctrl+f',      function (evt){ $('#ctrlw_filters').css('display','block'); return false; });
+    //jQuery(document).bind('keydown', 'down',        function (evt){ jQuery('#suggestions #tabs div fieldset table tbody tr').css('backgroundColor','#FFFFFF'); return false; });
+    //jQuery(document).bind('keydown', 'right',       function (evt){ jQuery('#suggestions #tabs ul li.ui-tabs-selected').next().click(); return false; });
+    $('#b').focus();
+}
 $(document).ready(ajustarContendor);
+$(document).ready(hotkeys);
 $(window).resize(ajustarContendor);
 
 function ajustarContendor()
@@ -13,6 +28,15 @@ function ajustarContendor()
 
 $(document).ready(function(){
 //    $('.fancybox').fancybox({'padding': 0, 'width': 800, 'height': 480, 'autoSize': false, 'fitToView': false});
+    
+    /*********************************************************************
+            ACCION PARA EL BOTON GUARDAR
+    *********************************************************************/
+   
+    $('.RS-form-save').click(function(){
+        $($(this).attr('data-form-id')).submit();
+    })
+    
     
     $(".sf_admin_batch_checkbox").click(function() { 
         if ($(this).attr("checked") == "checked"){
@@ -54,8 +78,10 @@ $(document).ready(function(){
     });
     $('#b').keypress(function(event){
         if ( event.which == 13 ) {
-            window.location.href = $('#suggestions #tabs').children('div').children().children().children('tbody').children('tr').children('td:last-child').children().attr('href');
-            //alert('hola');
+            if($('#RS-results-tabs').find('tr').length == 2)
+                window.location.href = $('#RS-results-tabs').children('div').children().children().children('tbody').children('tr').children('td:last-child').children().attr('href');
+            else
+                window.location.href = $('#b').data('result-url') + '&b=' + $('#b').val();
         }
     })
     $('#b').focus(function(){
@@ -156,7 +182,7 @@ function popUp(element)
 
 
 function search() {
-  $.post($('#b').data('search-url'), {nStr: "" + $('#b').val() + ""}, function(data){
+  $.get($('#b').data('search-url'), { b: "" + $('#b').val() + ""}, function(data){
     if(data.length > 0) {
       $('#suggestions').fadeIn();
       $('#suggestions').html(data);

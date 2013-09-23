@@ -3,13 +3,23 @@
         <li onclick="activeMenu('archivos')">Archivos <img vspace="3" src="{{ asset('bundles/panelctrlw/images/drop-down.png') }}" alt=">" />
             <ul id="RS-submenu-archivos" class="RS-submenu">
                 <li onclick="link_to('{{ path('clientes') }}')">Clientes</li>
+                <li onclick="link_to('{{ path('novedades') }}')">Novedades</li>
                 <li class="RS-submenu-separator"></li>
                 <li onclick="{{ url('clientes') }}">Personal</li>
             </ul>
         </li>
-        <li onclick="activeMenu('facturacion')">Facturaci&oacute;n <img vspace="3" src="{{ asset('bundles/panelctrlw/images/drop-down.png') }}" alt=">" />
-            <ul id="RS-submenu-facturacion" class="RS-submenu">
+    </ul>
+    <ul id="RS-login-info">
+        <li onclick="activeMenu('usuario')" style="width: 100px; text-align: center;">Walter {% if(true) %}<span class="RS-menu-notificaciones-usuarios">3</span>{% endif %} <img vspace="3" src="{{ asset('bundles/panelctrlw/images/drop-down.png') }}" alt=">" />
+            <ul id="RS-submenu-usuario" class="RS-submenu">
+                <li onclick="link_to('{{ path('clientes') }}')">Mensajes (4)</li>
+                <li onclick="link_to('{{ path('clientes') }}')">Notificaciones (3)</li>
+                <li onclick="link_to('{{ path('clientes') }}')">Perfil</li>
+                <li class="RS-submenu-separator"></li>
+                <li onclick="link_to('{{ path('clientes') }}')">Ayuda</li>
+                <li><a class="fancybox fancybox.iframe" href="http://www.seewald-i.com.ar">Acerca de...</a></li>
             </ul>
         </li>
+        <li onclick="link_to('{{ path('logout') }}')">Salir</li>
     </ul>
 </div>

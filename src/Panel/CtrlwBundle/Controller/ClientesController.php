@@ -38,7 +38,7 @@ class ClientesController extends Controller
         
         $pager = new Pager(
             $adapter,
-            array('page' => $page, 'limit' => 1));
+            array('page' => $page, 'limit' => 20));
             return $this->render('PanelCtrlwBundle:Clientes:index.html.twig',
             array('pager' => $pager)
         );

@@ -20,6 +20,8 @@
         </form>
     </li>
 {% endif -%}
-<li>
-    <button class='RS-form-save' data-form-id='#{{ route_name_prefix ~ '_update' }}'>Guardar</button>
-</li>
+{% if not hide_save -%}
+    <li>
+        <button class='RS-form-save' data-form-id='#{{ route_name_prefix ~ '_update' }}'>Guardar</button>
+    </li>
+{% endif -%}

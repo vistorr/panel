@@ -16,7 +16,7 @@
 
 {{ "{% block batch_actions -%}" }}
     <ul>
-        {% set hide_edit, hide_delete = true, false %}
+        {% set hide_edit, hide_delete, hide_save = true, false, false %}
         {% include 'views/others/record_actions.html.twig.twig' -%}
     </ul>
 {{ "{% endblock -%}" }}

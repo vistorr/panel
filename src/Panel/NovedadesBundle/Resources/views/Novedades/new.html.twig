@@ -1,0 +1,42 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% form_theme form 'PanelCtrlwBundle:FormTheme:fields.html.twig' %}
+
+{% block title -%}
+{{ parent() }} - NovedadesCrear
+{% endblock -%}
+
+{% block sidebar -%}
+    <div id="RS-sidebar-actions">
+    <ul>
+        <li class="RS-button-action sf_admin_action_new"><a href="{{ path('novedades_new') }}">AGREGAR NOVEDADES</a></li>                                
+        <li class="sf_admin_action_list"><a href="{{ path('novedades') }}">Listado de Novedades</a></li>
+    </ul>
+</div>{% endblock -%}
+
+{% block controller_name %}
+    Novedades
+{% endblock %}
+
+{% block batch_actions -%}
+    <ul>
+                <li>
+    <a href="{{ path('novedades') }}">
+        <button>Cancelar</button>
+    </a>
+</li>
+<li>
+        <button class='RS-form-save' data-form-id='#novedades_update'>Guardar</button>
+    </li>
+</ul>
+{% endblock -%}
+
+
+{% block body -%}
+    <form id='novedades_create' action="{{ path('novedades_create') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset id="sf_fieldset_info_general">
+            <h2>Info General</h2>
+            {{ form_widget(form) }}
+        </fieldset>
+    </form>
+{% endblock -%}

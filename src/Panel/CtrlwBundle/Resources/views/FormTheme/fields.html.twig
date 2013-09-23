@@ -1,11 +1,9 @@
-{% block form_row %}
-    {% spaceless %}
-        <div class="RS-admin-form-row RS-admin-text">
-            <div>
-                {{ form_label(form) }}
-                {{ form_errors(form) }}
-                {{ form_widget(form) }}
-            </div>
+{% block form_row -%}
+    <div class="RS-admin-form-row RS-admin-text">
+        <div>
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
         </div>
-    {% endspaceless %}
-{% endblock form_row %}
+    </div>
+{% endblock form_row -%}

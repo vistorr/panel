@@ -1,0 +1,69 @@
+{% extends 'PanelCtrlwBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - Novedades
+{% endblock %}
+ 
+
+{% block sidebar %}
+    <div id="RS-sidebar-actions">
+    <ul>
+        <li class="RS-button-action sf_admin_action_new"><a href="{{ path('novedades_new') }}">AGREGAR NOVEDADES</a></li>                                
+        <li class="sf_admin_action_list"><a href="{{ path('novedades') }}">Listado de Novedades</a></li>
+    </ul>
+</div>{% endblock %}
+
+
+{% block controller_name %}
+    Novedades
+{% endblock %}
+
+{% block batch_actions %}
+{% if pager.isPaginable %}
+        <ul>
+            {{ paginate(pager,'novedades') }}
+        </ul>
+   {% endif %}
+{% endblock %}
+
+
+{% block body -%}
+
+<div class="sf_admin_list">
+        <table cellspacing="0" class="records_list">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Resumen</th>
+                    <th>Cuerpo</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+{% for entity in pager.getResults %}
+                    <tr class="{{ cycle(['RS-table-tr-par', 'RS-table-tr-impar'], loop.index) }}">
+                        <td><a href="{{ path('novedades_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                            <td>{{ entity.titulo }}</td>
+                            <td>{{ entity.resumen|raw }}</td>
+                            <td>{{ entity.cuerpo|raw }}</td>
+                            <td>{{ entity.createdat }}</td>
+                            <td>
+                                    <div class="mas-acciones">
+                                        <span>M&aacute;s acciones</span>
+                                        <ul style="display: none;" class="sf_admin_td_actions">
+                                            <li class="RS-actions RS-action-show">
+                                                <a href="{{ path('novedades_show', { 'id': entity.id }) }}">Show</a>
+                                            </li>
+                                            <li class="RS-actions RS-action-edit">
+                                                <a href="{{ path('novedades_edit', { 'id': entity.id }) }}">Edit</a>
+                                            </li>
+                                            </ul>
+                                </div></td>
+                            </tr>
+{% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

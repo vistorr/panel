@@ -24,15 +24,19 @@ class BuscadorController extends Controller
      */
     public function resultadosAction(Request $request)
     {
-//        $b = $request->request->get('nStr');
-//        
-//        $em = $this->getDoctrine()->getManager();
-//        
-//        $clientes = $em->getRepository('PanelCtrlwBundle:Clientes')->findAll();
-//        
-//        return $this->render('PanelCtrlwBundle:Buscador:resultados.html.twig',array(
-//            'clientes' => $clientes
-//        ));
+        $b = $request->query->get('b');
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $clientes = $em->getRepository('PanelCtrlwBundle:Clientes')->findBySearch($b);
+        $novedades = $em->getRepository('PanelNovedadesBundle:Novedades')->findBySearch($b);
+        $layout = 'resultados';
+        
+        if($request->query->get('wl')) $layout = 'index';
+        return $this->render('PanelCtrlwBundle:Buscador:'.$layout.'.html.twig',array(
+            'clientes' => $clientes,
+            'novedades' => $novedades
+        ));
 
     }
     

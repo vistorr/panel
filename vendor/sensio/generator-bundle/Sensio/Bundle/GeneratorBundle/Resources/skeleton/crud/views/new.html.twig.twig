@@ -1,15 +1,32 @@
 {{ "{% extends 'PanelCtrlwBundle::layout.html.twig' %}" }}
 
-{{ "{% block body -%}" }}
-    <h1>{{ entity }} creation</h1>
+{{ "{% form_theme form 'PanelCtrlwBundle:FormTheme:fields.html.twig' %}" }}
 
-    <form action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
-        {{ "{{ form_widget(form) }}" }}
-        <p>
-            <button type="submit">Create</button>
-        </p>
-    </form>
+{{ "{% block title -%}" }}
+{{ "{{ parent() }} - " ~ entity|title ~ "Crear" }}
+{{ "{% endblock -%}" }}
 
-    {% set hide_edit, hide_delete = true, true %}
-    {% include 'views/others/record_actions.html.twig.twig' %}
+{{ "{% block sidebar -%}" }}
+    {% include 'views/others/sidebar.html.twig.twig' -%}
+{{ "{% endblock -%}" }}
+
+{{ "{% block controller_name %}" }}
+    {{ entity|title }}
 {{ "{% endblock %}" }}
+
+{{ "{% block batch_actions -%}" }}
+    <ul>
+        {% set hide_edit, hide_delete, hide_save = true, true, false %}
+        {% include 'views/others/record_actions.html.twig.twig' -%}
+    </ul>
+{{ "{% endblock -%}" }}
+
+
+{{ "{% block body -%}" }}
+    <form id='{{ route_name_prefix ~ '_create' }}' action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
+        <fieldset id="sf_fieldset_info_general">
+            <h2>Info General</h2>
+            {{ "{{ form_widget(form) }}" }}
+        </fieldset>
+    </form>
+{{ "{% endblock -%}" }}

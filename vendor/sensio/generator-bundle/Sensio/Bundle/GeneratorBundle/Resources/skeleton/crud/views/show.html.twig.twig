@@ -1,32 +1,40 @@
 {{ "{% extends 'PanelCtrlwBundle::layout.html.twig' %}" }}
 
-{{ "{% block body -%}" }}
-    <h1>{{ entity }}</h1>
+{{ "{% block title -%}" }}
+{{ "{{ parent() }} - " ~ entity|title ~ "Vista" }}
+{{ "{% endblock -%}" }}
 
-    <table class="record_properties">
-        <tbody>
-        {%- for field, metadata in fields %}
+{{ "{% block sidebar -%}" }}
+    {% include 'views/others/sidebar.html.twig.twig' -%}
+{{ "{% endblock -%}" }}
 
-            <tr>
-                <th>{{ field|capitalize }}</th>
-
-            {%- if metadata.type in ['date', 'datetime'] %}
-
-                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}</td>
-
-            {%- else %}
-
-                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
-
-            {%- endif %}
-
-            </tr>
-
-        {%- endfor %}
-
-        </tbody>
-    </table>
-
-    {% set hide_edit, hide_delete = false, false %}
-    {% include 'views/others/record_actions.html.twig.twig' %}
+{{ "{% block controller_name %}" }}
+    {{ entity|title }}
 {{ "{% endblock %}" }}
+
+{{ "{% block batch_actions -%}" }}
+    <ul>
+        {% set hide_edit, hide_delete, hide_save = false, false, true %}
+        {% include 'views/others/record_actions.html.twig.twig' -%}
+    </ul>
+{{ "{% endblock -%}" }}
+
+
+{{ "{% block body -%}" }}
+    <fieldset id="sf_fieldset_info_general">
+        <h2>Info General</h2>
+
+        {% for field, metadata in fields -%}
+        <div class="RS-admin-form-row RS-admin-text">
+            <div>
+                <label {% if not metadata.nullable %} class="required" {% endif %}>{{ field|capitalize }}</label>
+                {% if metadata.type in ['date', 'datetime'] -%}
+                    <input type="text" readonly="readonly" value="{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}" />
+                {% else -%}
+                    <input type="text" readonly="readonly" value="{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}" />
+                {% endif -%}
+            </div>
+        </div>
+        {% endfor -%}
+    </fieldset>
+{{ "{% endblock -%}" }}

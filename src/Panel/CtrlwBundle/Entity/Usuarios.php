@@ -34,4 +34,19 @@ class Usuarios extends BaseUser
     {
         return $this->id;
     }
+    
+    /**
+     * Agrega un rol al usuario.
+     * @throws Exception
+     * @param Rol $rol 
+     */
+    public function addRole( $rol )
+    {
+	if($rol == 1) {
+	  array_push($this->roles, 'ROLE_ADMIN');
+	}
+	else if($rol == 2) {
+	  array_push($this->roles, 'ROLE_USER');
+	}
+    }
 }

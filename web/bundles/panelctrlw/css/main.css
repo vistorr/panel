@@ -8,6 +8,9 @@ input:focus, textarea:focus, select:focus {border: 1px solid #FFFFFF;box-shadow:
 input, textarea, select{font-size: 13px;}
 #RS-menu-actions{height: 58px; border-bottom: 1px solid #e5e5e5; padding-left: 40px;}
 #RS-section-name{color: #dc4b39; font-size: 20px; line-height: 58px;}
+#RS-login-info{float: right; width: 170px;}
+.RS-menu-notificaciones-usuarios{color: #FFFFFF;font-size: 11px;margin:0px 4px;padding: 2px 5px; background-color: #FF0000; border-radius: 2px; -webkit-border-radius: 2px;}
+
 
 #RS-left-bar{float: left; width: 192px; height: 100%; padding: 20px 0 40px 20px; background: #FFFFFF; position: fixed; }
 #RS-main-content-wrapper{position: fixed; z-index: -1; margin-left: 220px; overflow: auto;}
@@ -22,7 +25,20 @@ button{cursor: pointer;line-height: 28px !important;padding: 0 8px !important;}
 button.red{background: url("/bundles/panelctrlw/images/RS-btn-action-bg.png") repeat-x transparent !important;}
 button.red:hover{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-hover.png") repeat-x scroll 0 0 transparent  !important}
 button.green{background-color: #92d27c;}
-button.blue{background-color: #7caad2;}
+button.blue{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-blue.png") repeat-x transparent !important;}
+button.blue:hover{background: url("/bundles/panelctrlw/images/RS-btn-action-bg-blue-hover.png") repeat-x transparent !important;}
+
+#suggestions{position: absolute; height: 300px; width: 750px; box-shadow: 2px 5px 5px #CCCCCC; background: #F5F5F5;border: 1px solid #ccc;border-top: 0px; z-index: 1000; left: 229px; top: 73px;}
+#suggestions .ui-tabs{padding: 0;}
+#suggestions .ui-tabs table th{text-align: left;}
+#suggestions .ui-tabs table tbody tr{border-color: #ccc; border-width: 1px; border-style: solid none solid; overflow: auto;}
+#suggestions .ui-tabs table tbody tr:hover{background-color: #fff;}
+#suggestions .RS-noresult{background-color: #f5f5f5; padding: 20px;}
+
+#RS-results-tabs table{border-collapse: collapse;border-spacing: 0;}
+#RS-results-tabs fieldset{border: 0px}
+#RS-results-tabs th, td {border: 1px solid #000000;padding: 0.5em;border: medium none !important;}
+#RS-results-tabs th {font-weight: bold;}
 
 .paginator-button{background: #F2F2F2; padding: 7px 15px; display: inline-block; color: #333; border-radius:3px; border:1px solid #ccc;}
 .paginator-button:hover{box-shadow:-1px 1px 3px #d0cfcf;}

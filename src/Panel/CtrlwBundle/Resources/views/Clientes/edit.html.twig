@@ -20,22 +20,22 @@
 
 {% block batch_actions -%}
     <ul>
-        <li>
-            <a href="{{ path('clientes') }}">
-                <button>Cancelar</button>
-            </a>
-        </li>
-        <li>
-            <form action="{{ path('clientes_delete', { 'id': entity.id }) }}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
-                {{ form_widget(delete_form) }}
-                <button class='red' type="submit">Eliminar</button>
-            </form>
-        </li>
-        <li>
-            <button class='RS-form-save' data-form-id='#clientes_update'>Guardar</button>
-        </li>
-    </ul>
+                <li>
+    <a href="{{ path('clientes') }}">
+        <button>Cancelar</button>
+    </a>
+</li>
+<li>
+        <form action="{{ path('clientes_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class='red' type="submit">Eliminar</button>
+        </form>
+    </li>
+<li>
+        <button class='RS-form-save' data-form-id='#clientes_update'>Guardar</button>
+    </li>
+</ul>
 {% endblock -%}
 
 

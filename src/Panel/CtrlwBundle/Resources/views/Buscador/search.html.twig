@@ -1,4 +1,4 @@
 <div id="RS-search">
-    <a href="{{ url('homepage') }}" ><img boder='0' src="{{ asset('bundles/panelctrlw/images/rs-logo.png') }}" width="145"  alt="RS Soluciones" title="RS Soluciones" /></a> <input id="b" data-search-url="{{ url('resultados') }}" type="text" name="b" /> <button name="sb" ><img src="{{ asset('bundles/panelctrlw/images/RS-search-icon.png') }}" alt="S" /></button>
+    <a href="{{ url('homepage') }}" ><img boder='0' src="{{ asset('bundles/panelctrlw/images/rs-logo.png') }}" width="145"  alt="RS Soluciones" title="RS Soluciones" /></a> <input id="b" data-result-url="{{ path('resultados',{ 'wl': 1 }) }}" data-search-url="{{ url('resultados',{ 'wl': 0 }) }}" type="text" name="b" /> <button name="sb" ><img src="{{ asset('bundles/panelctrlw/images/RS-search-icon.png') }}" alt="S" /></button>
     <div id="suggestions" style="display: none;"></div>
 </div>
