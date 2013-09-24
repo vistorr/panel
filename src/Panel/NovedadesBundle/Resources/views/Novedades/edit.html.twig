@@ -6,6 +6,11 @@
 {{ parent() }} - NovedadesEditar
 {% endblock -%}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(edit_form) }}
+{% endblock %}
+    
 {% block sidebar -%}
     <div id="RS-sidebar-actions">
     <ul>
@@ -48,3 +53,4 @@
         </fieldset>
     </form>
 {% endblock -%}
+    

@@ -19,6 +19,7 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
+    translator:      ~
 
 # Twig Configuration
 twig:
@@ -75,6 +76,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Panel\CtrlwBundle\Entity\Usuarios
-    registration:
-      form:
-           type: mi_user_registration
+    
+genemu_form:
+    tinymce: 
+      #script_url: /js/tinymce/tinymce.min.js
+      enabled: true
+      theme:   modern

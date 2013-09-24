@@ -1,39 +1,39 @@
 panel_novedades:
     resource: "@PanelNovedadesBundle/Controller/"
     type:     annotation
-    prefix:   /ctrlw/
+    prefix:   /
 
 panel_ctrlw:
     resource: "@PanelCtrlwBundle/Controller/"
     type:     annotation
-    prefix:   /ctrlw/
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /ctrlw/profile
+    prefix: /profile
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /ctrlw/register
+    prefix: /register
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /ctrlw/resetting
+    prefix: /resetting
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /ctrlw/profile
+    prefix: /profile
  
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
-    prefix: /ctrlw/group
+    prefix: /group
     
 login_check:
-    pattern: /ctrlw/login_check
+    pattern: /login_check
 
 logout:
-    pattern: /ctrlw/logout
+    pattern: /logout
     

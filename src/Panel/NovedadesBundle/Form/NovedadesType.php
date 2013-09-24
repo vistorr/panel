@@ -11,11 +11,15 @@ class NovedadesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo')
-            ->add('resumen')
-            ->add('cuerpo')
-            ->add('created_at','genemu_jquerydate',array('label'=> 'Fecha','widget' => 'single_text','format'=>'dd/MM/yyyy'))
-        ;
+            ->add('titulo',null,array('attr'=> array('style' => 'width:450px')))
+            ->add('resumen', 'genemu_tinymce',array('configs' => array('max_width' => '200', 'menubar' => false, 'width' => 550,'clear' => 'both')))
+            ->add('cuerpo', 'genemu_tinymce',array('configs' => array('max_width' => '200', 'menubar' => false, 'width' => 550,'clear' => 'both')))
+            ->add('created_at', 'date',array(
+                    'input'  => 'timestamp',
+                    'widget' => 'choice',
+                    'format' => 'dd-MM-yyyy',
+                    'label'  => 'Fecha Publicación'
+                ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

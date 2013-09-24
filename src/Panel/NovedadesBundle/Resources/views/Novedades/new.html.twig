@@ -3,8 +3,13 @@
 {% form_theme form 'PanelCtrlwBundle:FormTheme:fields.html.twig' %}
 
 {% block title -%}
-{{ parent() }} - NovedadesCrear
+{{ parent() }} - Novedades Crear
 {% endblock -%}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}
 
 {% block sidebar -%}
     <div id="RS-sidebar-actions">

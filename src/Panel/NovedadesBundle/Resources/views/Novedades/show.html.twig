@@ -52,25 +52,25 @@
         <div class="RS-admin-form-row RS-admin-text">
             <div>
                 <label  class="required" >Titulo</label>
-                <input type="text" readonly="readonly" value="{{ entity.titulo }}" />
+                <input type="text" style='width:400px' readonly="readonly" value="{{ entity.titulo }}" />
                 </div>
         </div>
         <div class="RS-admin-form-row RS-admin-text">
             <div>
                 <label >Resumen</label>
-                <input type="text" readonly="readonly" value="{{ entity.resumen }}" />
+                <textarea readonly="readonly" style='width:550px; height: 100px'>{{ entity.resumen|striptags }}</textarea>
                 </div>
         </div>
         <div class="RS-admin-form-row RS-admin-text">
             <div>
                 <label >Cuerpo</label>
-                <input type="text" readonly="readonly" value="{{ entity.cuerpo }}" />
+                <textarea style='width:550px; height: 150px' readonly="readonly">{{ entity.cuerpo|striptags }}</textarea>
                 </div>
         </div>
         <div class="RS-admin-form-row RS-admin-text">
             <div>
-                <label >Created_at</label>
-                <input type="text" readonly="readonly" value="{{ entity.createdat }}" />
+                <label >Fecha Publicaci&oacute;n</label>
+                <input type="text" readonly="readonly" value="{{ entity.createdat|date('d/m/Y') }}" />
                 </div>
         </div>
         </fieldset>
