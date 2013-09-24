@@ -6,6 +6,11 @@
 {{ "{{ parent() }} - " ~ entity|title ~ "Editar" }}
 {{ "{% endblock -%}" }}
 
+{{ "{% block javascripts %}" }}
+{{ "    {{ parent() }}" }}
+{{ "    {{ form_javascript(edit_form) }}" }}
+{{ "{% endblock %}" }}
+
 {{ "{% block sidebar -%}" }}
     {% include 'views/others/sidebar.html.twig.twig' -%}
 {{ "{% endblock -%}" }}
