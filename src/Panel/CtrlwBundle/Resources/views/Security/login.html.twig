@@ -1,22 +1,20 @@
+{% extends 'PanelCtrlwBundle::login.html.twig' %}
 
 {% block fos_user_content %}
-    <div id="page-wrapper">
-        <div id="main">
-{% if error %}
-            <div id="login-error">{{ error.message|trans }}</div>
-{% endif %}
-            <form action="{{ path('login_check') }}" method="post">
-                <input type="hidden" name="_csrf_token" value="{% render path('getToken') %}" />
-                <div class="form-item">
-                    <label for="username">Usuario</label>
-                    <input id="username" type="text" name="_username" value="{{ last_username }}" />
-                </div>
-                <div class="form-item">
-                    <label for="password">Contraseña</label>
-                    <input id="password" type="password" name="_password" />
-                </div>
-                <input type="submit" name="login" value="Iniciar sesión" />
-            </form>
-        </div>
-    </div>
+    {% if error -%}
+    <div>{{ error.message|trans }}</div>
+    {% endif -%}
+    <form action="{{ path('login_check') }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{% render path('getToken') %}" />
+        <ul>
+            <li><strong>Usuario:</strong></li>
+            <li><input id="username" type="text" name="_username" value="{{ last_username }}" /></li>
+        </ul>
+        <ul>
+            <li><strong>Contraseña:</strong></li>
+            <li><input id="password" type="password" name="_password" /></li>
+        </ul>
+        <div align="right"><input class="RS-login-submit RS-link" type="submit" value="Entrar" /></div>
+    </form>
+
 {% endblock fos_user_content %}

@@ -28,7 +28,7 @@
 
 
 {{ "{% block body -%}" }}
-    <form id='{{ route_name_prefix ~ '_create' }}' action="{{ "{{ path('" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
+    <form id='{{ 'ctrlw_' ~ route_name_prefix ~ '_create' }}' action="{{ "{{ path('ctrlw_" ~ route_name_prefix ~ "_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }}>
         <fieldset id="sf_fieldset_info_general">
             <h2>Info General</h2>
             {{ "{{ form_widget(form) }}" }}

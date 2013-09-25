@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}RS Soluciones :: Panel de Control v1.0{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/panelctrlw/css/login.css') }}" />
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+  <body>
+      <div id="RS-login">
+          <div id="RS-login-logo"><img src="{{ asset('/bundles/panelctrlw/images/logo.png') }}" alt="Panel" /></div>
+      </div>
+      <div id="RS-login-wrapper">
+        {% block fos_user_content %}{% endblock %}
+      </div>
+  </body>
+</html>

@@ -28,7 +28,7 @@
 
 
 {{ "{% block body -%}" }}
-    <form id='{{ route_name_prefix ~ '_update' }}' action="{{ "{{ path('" ~ route_name_prefix ~ "_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
+    <form id='{{ 'ctrlw_' ~ route_name_prefix ~ '_update' }}' action="{{ "{{ path('ctrlw_" ~ route_name_prefix ~ "_update', { 'id': entity.id }) }}" }}" method="post" {{ "{{ form_enctype(edit_form) }}" }}>
         <input type="hidden" name="_method" value="PUT" />
         <fieldset id="sf_fieldset_info_general">
             <h2>Info General</h2>

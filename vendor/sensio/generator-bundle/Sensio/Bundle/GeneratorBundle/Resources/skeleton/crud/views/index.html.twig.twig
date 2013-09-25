@@ -17,7 +17,7 @@
 {{ "{% block batch_actions %}" }}
 {{    "{% if pager.isPaginable %}" }}
         <ul>
-            {{ "{{ paginate(pager,'" ~ route_name_prefix ~ "') }}" }}
+            {{ "{{ paginate(pager,'ctrlw_" ~ route_name_prefix ~ "') }}" }}
         </ul>
 {{ "   {% endif %}" }}
 {{ "{% endblock %}" }}
@@ -40,7 +40,7 @@
                     <tr class="{{ "{{ cycle(['RS-table-tr-par', 'RS-table-tr-impar'], loop.index) }}" }}">
                         {% for field, metadata in fields -%}
                             {% if loop.first and ('show' in actions) -%}
-                                <td><a href="{{ "{{ path('"~ route_name_prefix ~"_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</a></td>
+                                <td><a href="{{ "{{ path('ctrlw_"~ route_name_prefix ~"_show', { 'id': entity.id }) }}" }}">{{ '{{ entity.'~ field|replace({'_': ''}) ~' }}' }}</a></td>
                             {% elseif metadata.type in ['date', 'datetime'] -%}
                                 <td>{{ '{% if entity.'~ field|replace({'_': ''}) ~' %}{{ entity.'~ field|replace({'_': ''}) ~'|date(\'Y-m-d H:i:s\') }}{% endif%}' }}</td>
                             {% else -%}

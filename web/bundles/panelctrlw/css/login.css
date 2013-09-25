@@ -1,0 +1,21 @@
+
+/*#####################################*/
+/*######      CSS PARA LOGIN     ######*/
+/*#####################################*/
+body{ margin: 0px; padding: 0px; background: #F2F2F2; font-family:Arial,Helvetica,sans-serif; font-size:12px;}
+#RS-login{left: 50%;margin-bottom: 20px;margin-left: -128px;margin-top: -180px;position: absolute;text-align: center;top: 50%;width: 260px;}
+#RS-login-logo{font-family: Arial Black;font-size: 50px;color: #333333;line-height: 50px;}
+#RS-login-slogan{font-family: Arial Narrow;font-size: 20px;color: #818181;}
+#RS-login-wrapper{position: absolute;left: 50%;top: 50%;margin-left: -160px;margin-top: -90px;width: 280px;padding: 20px;box-shadow:#CCCCCC 5px 5px 15px; -moz-box-shadow:#CCCCCC 5px 5px 15px; -web-kit-box-shadow:#CCCCCC 5px 5px 15px; background:#FFFFFF;}
+#RS-login-wrapper input{padding: 5px;}
+.RS-login-submit{background: #4a4a4a !important; border: 1px solid #cbcbcb ; color: #FFF; padding: 5px; width: 80px !important;}
+.RS-login-link{font-size: 11px;}
+
+
+.error_list{color: #FF0000; text-align: center;}
+            
+#RS-login-submit{background: #4a4a4a; border: 1px solid #cbcbcb; color: #FFF; padding: 5px; width: 80px;}
+#RS-login-wrapper ul{margin: 5px; padding: 0;}
+#RS-login-wrapper ul li{list-style: none; padding: 2px;}
+#RS-login-wrapper input{background: #ffffff; width: 250px; padding: 5px; border: 1px solid #CCCCCC;}
+#RS-login-wrapper .error_list{color: #FF0000; text-align: center;} 
